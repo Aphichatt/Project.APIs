@@ -19,8 +19,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: manny
-          password: P@ssw0rd
+          username: aphichat.thu@gmail.com
+          password: manny@626
 
       # Build Docker image
       - name: Build Docker Image
