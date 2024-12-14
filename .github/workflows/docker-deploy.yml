@@ -1,0 +1,40 @@
+name: Deploy with Docker
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the latest code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Login to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: manny
+          password: P@ssw0rd
+
+      # Build Docker image
+      - name: Build Docker Image
+        run: |
+          docker build -t app-api/app-api:latest .
+
+      # Push Docker image to Docker Hub
+      - name: Push Docker Image
+        run: |
+          docker push manny/app-api:latest
+
+      # Deploy the Docker container
+      - name: Run Docker Container
+        run: |
+          docker stop your-container-name || true
+          docker rm your-container-name || true
+          docker run -d --name your-container-name -p 80:80 manny/app-api:latest
