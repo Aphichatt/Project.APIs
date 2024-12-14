@@ -30,11 +30,11 @@ jobs:
       # Push Docker image to Docker Hub
       - name: Push Docker Image
         run: |
-          docker push manny/app-api:latest
+          docker push aphichat.thu@gmail.com/app-api:latest
 
       # Deploy the Docker container
       - name: Run Docker Container
         run: |
           docker stop your-container-name || true
           docker rm your-container-name || true
-          docker run -d --name your-container-name -p 80:80 manny/app-api:latest
+          docker run -d --name your-container-name -p 80:80 aphichat.thu@gmail.com/app-api:latest
