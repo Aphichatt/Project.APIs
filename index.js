@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 // Route: Get Users
 app.get('/users', (req, res) => {
     const users = [
-        { id: 1, name: 'Alice' },
+        { id: 1, name: 'Alice test' },
         { id: 2, name: 'Bob' },
     ];
     res.json(users);
