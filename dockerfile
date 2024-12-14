@@ -18,7 +18,5 @@ COPY . .
 # เปิดพอร์ต (ถ้าแอปของคุณใช้พอร์ต เช่น 3000)
 EXPOSE 3000
 
-RUN npm run dev
-
 # ตั้งค่า Command สำหรับเริ่มแอป
 # CMD ["node", "app.js"]
