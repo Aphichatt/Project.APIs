@@ -1,22 +1,20 @@
-# ใช้ Base Image สำหรับ Node.js
-FROM node:16-slim
+# ใช้ Node.js เป็น base image
+FROM node:16
 
-# ตั้งค่า Working Directory
+# ตั้งค่าที่เก็บ source code ใน container
 WORKDIR /app
 
-# คัดลอกไฟล์ package.json และ package-lock.json (ถ้ามี)
+# คัดลอกไฟล์ package.json และ package-lock.json ไปยัง container
 COPY package*.json ./
 
-# ติดตั้ง Dependencies
+# ติดตั้ง dependencies
 RUN npm install
-RUN npm install express body-parser cors
 
-
-# คัดลอกไฟล์ทั้งหมดในโปรเจกต์ไปยัง Container
+# คัดลอก source code ทั้งหมดไปยัง container
 COPY . .
 
-# เปิดพอร์ต (ถ้าแอปของคุณใช้พอร์ต เช่น 3000)
+# กำหนด port ที่ต้องการ expose
 EXPOSE 3000
 
-# ตั้งค่า Command สำหรับเริ่มแอป
-# CMD ["node", "app.js"]
+# คำสั่งเริ่มต้นสำหรับรันแอปพลิเคชัน
+CMD ["npm", "start"]
